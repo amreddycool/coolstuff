@@ -1,16 +1,14 @@
-#docker run -dit -v /$(pwd)/coolstuff:/home/coolstuff --name ubuntu ubuntu systemctl
-# docker exec -u root -it ubuntu //bin/bash
-#cd /home/coolstuff
-#.setEnv.sh
-apt-get update && apt-get install sudo
-apt-get install -y vim
-apt-get install -y curl
+#    2  sudo apt update
+#    3  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+#    4  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+#    5  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+#    6  sudo apt update
+#    7  apt-cache policy docker-ce
+#    8  sudo apt install docker-ce
+#    9  sudo systemctl status docker
 
-# install docker
-apt-get install -y docker.io
+$ curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
 
-#k3s certs
-openssl s_client -connect k3s.io:443 -showcerts </dev/null 2>/dev/null| sed -e '/-----BEGIN/,/-----END/!d' | tee "/usr/local/share/ca-certificates/ca.crt" >/dev/null && \
-update-ca-certificates
+kubectl create configmap hello-world --from-file index.html
 
 
